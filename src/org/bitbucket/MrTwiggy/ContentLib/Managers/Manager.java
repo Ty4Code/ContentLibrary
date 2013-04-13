@@ -10,15 +10,29 @@ import org.bukkit.entity.Player;
 
 public abstract class Manager
 {
+	/* FIELD: managerName */
+	//The name of the content collection being managed
+	//Example: 'Sounds'
 	private String managerName; // Name of the content collection being managed (Ex: 'Sounds')
+	public String getManagerName(){ return managerName; }
+	
+	/* FIELD: managerDescription */
+	//The description of the content collection
+	//Example: 'A collection of custom sounds!'
 	private String managerDescription; // Description of the content collection being managed (Ex: 'Collection of custom sounds')
+	public String getManagerDescription(){ return managerDescription; }
+	
+	/* FIELD: contents */
+	//The list of content being managed
+	//The list of content is sorted alphabetically so that it may be fetched with log(n) efficiency
+	//Example: 'Sound1, Sound2, ..., Sound5'
 	private ArrayList<Content> contents; // List of available Content (Ex: 'Sound1, Sound2, Sound3')
+	public ArrayList<Content> getContents(){ return contents; }
 	
 	/**
 	 * Constructor
-	 * @param contentName
-	 * @param contentDescription
-	 * @param contentClass
+	 * @param managerName
+	 * @param managerDescription
 	 */
 	public Manager(String managerName, String managerDescription)
 	{
@@ -29,6 +43,7 @@ public abstract class Manager
 	
 	/**
 	 * Get the content with name
+	 * Uses a binary tree type search for log(n) efficiency
 	 * @param name - content name of the Content being searched for
 	 * @return content, if one exists with the name, null otherwise
 	 */
@@ -87,7 +102,7 @@ public abstract class Manager
 	
 	/**
 	 * Add content to this manager
-	 * @param newContent
+	 * @param newContent - The new content to be added
 	 * @return true, if the content was added successfully, false otherwse
 	 */
 	public boolean addContent(Content newContent)
@@ -97,6 +112,7 @@ public abstract class Manager
 	
 	/**
 	 * Add the content object to the contents list being managed
+	 * Adds the content in the proper location within the contents list (alphabetical order)
 	 * @param content - The content to be added
 	 * @return true, if the content was successfully added, false otherwise
 	 */
@@ -135,6 +151,7 @@ public abstract class Manager
 	/**
 	 * Remove the content with 'name' from the contents being managed
 	 * @param name - The name of the content to be removed
+	 * @return true, if the content was successfully removed, false otherwise
 	 */
 	public boolean removeContent(String name)
 	{
@@ -181,33 +198,6 @@ public abstract class Manager
 		result.put(getManagerName(), contentMap);
 		
 		return result;
-	}
-	
-	/**
-	 * Public accessor for 'contentName'
-	 * @return contentName
-	 */
-	public String getManagerName()
-	{
-		return managerName;
-	}
-	
-	/**
-	 * Public accessor for 'contentDescription'
-	 * @return contentDescription
-	 */
-	public String getManagerDescription()
-	{
-		return managerDescription;
-	}
-
-	/**
-	 * Public accessor for 'contents'
-	 * @return contents
-	 */
-	public ArrayList<Content> getContents()
-	{
-		return contents;
 	}
 
 	/**

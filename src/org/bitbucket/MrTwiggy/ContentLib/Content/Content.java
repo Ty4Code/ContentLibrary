@@ -16,6 +16,11 @@ import org.bitbucket.MrTwiggy.ContentLib.Managers.ContentManager.CommandType;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+/**
+ * The general form of Content that is managed
+ * @author Ty
+ *
+ */
 public abstract class Content extends SerializationConfig
 {
 	
@@ -37,6 +42,7 @@ public abstract class Content extends SerializationConfig
 	//The component holder for this content.
 	//Used to attach/detach components, as well as handling messages
 	ComponentHolder componentHolder;
+	public ComponentHolder getComponentHolder(){ return componentHolder; }
 	
 	/**
 	 * Constructor
@@ -45,6 +51,7 @@ public abstract class Content extends SerializationConfig
 	 */
 	public Content(String name, String description)
 	{
+		this.setDefaults();
 		this.name = name;
 		this.description = description;
 	}
@@ -63,7 +70,7 @@ public abstract class Content extends SerializationConfig
 	 */
 	public Content()
 	{
-		
+		this.setDefaults();
 	}
 		
 	/**
@@ -86,17 +93,8 @@ public abstract class Content extends SerializationConfig
 	}
 	
 	/**
-	 * Public accessor for 'componentHolder'
-	 * @return componentHolder
-	 */
-	public ComponentHolder getComponentHolder()
-	{
-		return componentHolder;
-	}
-	
-	/**
 	 * Handle a global Content message
-	 * @param message
+	 * @param message - The message to be fired/handled
 	 * @return true, if the message was handled by any component, false otherwise
 	 */
 	public boolean handleMessage(ComponentMessage message)
@@ -104,6 +102,12 @@ public abstract class Content extends SerializationConfig
 		return componentHolder.handleMessage(message);
 	}
 	
+	/**
+	 * Removes an element from a List Property
+	 * @param property - The name of the property to be modified
+	 * @param removeIndex - The index of the element to be removed
+	 * @return true, if the removal was successful, false otherwise
+	 */
 	public boolean removeContentProperty(String property, int removeIndex)
 	{
 		ArrayList<Field> fields = new ArrayList<Field>();
@@ -149,6 +153,13 @@ public abstract class Content extends SerializationConfig
         return false;
 	}
 	
+	/**
+	 * Adds an element to a List Property
+	 * @param property - The List Property to be added to
+	 * @param value - The value/element to be added
+	 * @param serializor - The serializor to be used in properly serializing the value
+	 * @return true, if the element was successfully added, false otherwise
+	 */
 	public boolean addContentProperty(String property, String value, Serializor serializor)
 	{
 		ArrayList<Field> fields = new ArrayList<Field>();
@@ -210,6 +221,11 @@ public abstract class Content extends SerializationConfig
         return false;
 	}
 	
+	/**
+	 * Clears all elements from a List Property
+	 * @param property - The List Property to be cleared
+	 * @return true, if the property was successfully cleared, false otherwise
+	 */
 	public boolean clearContentProperty(String property)
 	{
 		ArrayList<Field> fields = new ArrayList<Field>();
@@ -250,9 +266,9 @@ public abstract class Content extends SerializationConfig
 	
 	/**
 	 * Get the correct property name
-	 * @param propertyInfo
-	 * @param field
-	 * @return propertyName
+	 * @param propertyInfo - The Property annotation information that accompanies the field
+	 * @param field - The field to be checked
+	 * @return the correct 'property name' that corresponds with a specific field
 	 */
 	public String getPropertyName(Property propertyInfo, Field field)
 	{
@@ -273,6 +289,14 @@ public abstract class Content extends SerializationConfig
 		return propertyName;
 	}
 	
+	/**
+	 * Set the value of a specific Property
+	 * @param property - The property to be modified
+	 * @param value - The value to set the property to
+	 * @param player - The player setting the value
+	 * @return true, if the property was successfully set, false otherwise
+	 * @throws NoSuchPropertyException
+	 */
     public boolean setContentProperty(String property, Object value, Player player) throws NoSuchPropertyException
     {
     	ArrayList<Field> fields = new ArrayList<Field>();
@@ -370,4 +394,5 @@ public abstract class Content extends SerializationConfig
 	 * @return true, if player has permission, false otherwise
 	 */
 	public abstract boolean hasPermission(Player player, CommandType commandType);
+
 }

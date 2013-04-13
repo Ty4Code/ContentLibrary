@@ -1,6 +1,5 @@
 package org.bitbucket.MrTwiggy.ContentLib;
 
-import org.bitbucket.MrTwiggy.ContentLib.Listeners.PlayerListener;
 import org.bitbucket.MrTwiggy.ContentLib.Managers.ContentManager;
 import org.bitbucket.MrTwiggy.ContentLib.Profiles.ContentProfile;
 import org.bitbucket.MrTwiggy.ContentLib.Profiles.ContentProfiler;
@@ -11,6 +10,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+/**
+ * The main Plugin class for ContentLibrary
+ * Handle the initialization of the general ContentManager and commands
+ * @author Ty
+ *
+ */
 public class ContentLib extends JavaPlugin
 {
 	private static ContentLib instance; // Singleton instance of Content Library
@@ -25,14 +30,11 @@ public class ContentLib extends JavaPlugin
 		//Set up the singleton instance of this plugin
 		instance = this;
 		
-		//Register listeners
-		getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-		
 		//Initialize the content manager
 		ContentManager.initializeInstance();
 		
 		//Initialize the profiler for ContentLibrary
-		PlayerProfileManager.getInstance().initializeProfiler(new ContentProfiler(PLUGIN_NAME));
+		PlayerProfileManager.getInstance().initializeProfiler(new ContentProfiler());
 	}
 	
 	/**

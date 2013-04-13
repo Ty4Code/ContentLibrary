@@ -17,9 +17,22 @@ import org.bitbucket.MrTwiggy.ContentLib.Utility.Utility;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 
+/**
+ * The manager of managers. This manager handles
+ * the loading and saving of other, more specific Content Managers,
+ * as well as handling the general user interface and player commands.
+ * @author Ty
+ *
+ */
 public class ContentManager
 {
 
+	/**
+	 * The enumeration that lists all 
+	 * possible input commands
+	 * @author Ty
+	 *
+	 */
 	public enum CommandType
 	{
 		LIST,
@@ -32,10 +45,17 @@ public class ContentManager
 		SAVE;
 	}
 	
+	/* FIELD: CONTENT_SECTION */
+	//The header for the saves section for all general content
 	public static final String CONTENT_SECTION = "content_saves";
 	
-	private static ContentManager instance; // Singleton instance
+	/* FIELD: instance */
+	//The singleton instance for this ContentManager
+	private static ContentManager instance;
 	
+	/* FIELD: contentManagers */
+	//The list of more specific content managers
+	//being handled by this ContentManager.
 	ArrayList<Manager> contentManagers;
 	
 	/**
@@ -48,7 +68,7 @@ public class ContentManager
 	
 	/**
 	 * Loads a manager and checks to see if it has any saved Content data to load
-	 * @param manager
+	 * @param manager - The manager to be loaded from file
 	 * @return true, if manager was successfully loaded, false otherwise
 	 */
 	public boolean loadManager(Manager manager)
@@ -107,7 +127,7 @@ public class ContentManager
 	}
 	
 	/**
-	 * Save all the content data to file
+	 * Save all the content data and managers to file
 	 */
 	public void saveContent()
 	{
@@ -121,8 +141,7 @@ public class ContentManager
 	
 	/**
 	 * Save the content for a specific manager
-	 * @param contentSectionName
-	 * @param contentManager
+	 * @param contentManager - The specific content manager to be saved to file
 	 */
 	public void saveContent(Manager contentManager)
 	{
@@ -142,7 +161,7 @@ public class ContentManager
 	
 	/**
 	 * Get the manager with matching name
-	 * @param name
+	 * @param name - The name of the manager being searched for
 	 * @return manager, if one exists with matching name, false otherwise
 	 */
 	public Manager getManager(String name)
@@ -158,6 +177,7 @@ public class ContentManager
 		return null;
 	}
 	
+	//TODO: Replace hardcoded command handling with more OOP Command class based system
 	/*
 	 * COMMAND STUFF
 	 */
@@ -765,7 +785,8 @@ public class ContentManager
 	
 	/**
 	 * Initialize a given Manager of Content
-	 * @param manager
+	 * Note: Generally called when a Content management library is enabled
+	 * @param manager - The manager to be initialized
 	 */
 	public void initializeManager(Manager manager)
 	{
