@@ -1,0 +1,62 @@
+name: ContentLib
+main: org.bitbucket.MrTwiggy.ContentLib.ContentLib
+author: MrTwiggy
+depend: [ProfileLib, ComponentLib]
+version: 0.1
+commands:
+   preview:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   set:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   list:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   select:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   add:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   remove:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   clear:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   contentinfo:
+      description: This is a demo command.
+      alias: cinfo
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   create:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   delete:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
+   save:
+      description: This is a demo command.
+      usage: /<command> [player]
+      permission: 
+      permission-message: You don't have <permission>
