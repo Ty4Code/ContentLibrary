@@ -2,7 +2,6 @@ package org.bitbucket.MrTwiggy.ContentLib;
 
 import org.bitbucket.MrTwiggy.ContentLib.Managers.ContentManager;
 import org.bitbucket.MrTwiggy.ContentLib.Profiles.ContentProfile;
-import org.bitbucket.MrTwiggy.ContentLib.Profiles.ContentProfiler;
 import org.bitbucket.MrTwiggy.ProfileLib.Managers.PlayerProfileManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
