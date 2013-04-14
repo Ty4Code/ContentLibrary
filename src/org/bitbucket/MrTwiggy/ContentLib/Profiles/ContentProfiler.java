@@ -12,19 +12,7 @@ public class ContentProfiler extends SpecificPlayerProfiler
 	 */
 	public ContentProfiler() 
 	{
-		super(ContentLib.PLUGIN_NAME);
+		super(ContentLib.PLUGIN_NAME, ContentProfile.class);
 	}
-
-	/**
-	 * Get the default profile for a new player
-	 * @param playerName - THe name of the player who will own the new profile
-	 * @return the new specific player profile
-	 */
-	@Override
-	public SpecificPlayerProfile getDefaultProfile(String playerName) 
-	{
-		return new ContentProfile(playerName);
-	}
-
 	
 }
