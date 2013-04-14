@@ -34,7 +34,7 @@ public class ContentLib extends JavaPlugin
 		ContentManager.initializeInstance();
 		
 		//Initialize the profiler for ContentLibrary
-		PlayerProfileManager.getInstance().initializeProfiler(new ContentProfiler());
+		PlayerProfileManager.getInstance().initializeProfiler(PLUGIN_NAME, ContentProfile.class);
 	}
 	
 	/**
